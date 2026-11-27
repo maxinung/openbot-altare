@@ -47,6 +47,25 @@ chmod 0700 /run/s6/container_environment 2>/dev/null || true
 # the generated DATABASE_URL / COMPUTER_TOKEN would never reach the services.)
 /command/s6-dumpenv /run/s6/container_environment
 
+# OpenBot refuses to start when BETTER_AUTH_SECRET or BETTER_AUTH_URL is
+# set but no identity provider (GOOGLE/MICROSOFT/OKTA_OAUTH_*) is
+# configured — and on Altare those two values keep reaching the container
+# even after being removed from the console variables (verified 27 Nov
+# 2026: two starts after removal still failed with the same error, exit
+# 78). When no provider is configured, strip them — and the public-URL
+# aliases the server also reads — from the dumped environment, so
+# OPENBOT_SINGLE_USER=true can engage ("one administrator and no
+# sign-in"). When a provider IS configured, leave them alone: the OAuth
+# path needs them. (The strip only applies here, on the not-PID-1 path;
+# a plain docker run still goes through /init untouched.)
+if [ -z "${GOOGLE_OAUTH_CLIENT_ID:-}" ] && [ -z "${MICROSOFT_OAUTH_CLIENT_ID:-}" ] && [ -z "${OKTA_OAUTH_CLIENT_ID:-}" ]; then
+  for v in BETTER_AUTH_SECRET BETTER_AUTH_URL NEXT_PUBLIC_BETTER_AUTH_URL PUBLIC_BETTER_AUTH_URL NUXT_PUBLIC_BETTER_AUTH_URL NUXT_PUBLIC_AUTH_URL; do
+    rm -f "/run/s6/container_environment/$v"
+    unset "$v"
+  done
+  echo "[openbot-altare-entrypoint] no identity provider configured; stripped BETTER_AUTH_* so single-user mode can start" >&2
+fi
+
 # Persist the embedded database in the platform's data folder when one is
 # present (Altare mounts it at /data). Without this, a redeploy wipes the
 # cluster and its password file, since files outside /data are replaced.
