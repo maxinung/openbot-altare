@@ -49,6 +49,11 @@ Image: **`ghcr.io/maxinung/openbot-altare:v1.2.0`** (public, no registry login)
   + key), `OPENBOT_SINGLE_USER=true`, plus an identity provider
   (`GOOGLE_OAUTH_*` / `MICROSOFT_OAUTH_*` / `OKTA_OAUTH_*` with
   `BETTER_AUTH_URL`, `BETTER_AUTH_SECRET`, `INITIAL_ADMIN_EMAILS`).
+  `BETTER_AUTH_*` are ONLY for the OAuth path: if no identity provider is
+  configured, do NOT set them — the dispatcher strips them so single-user
+  mode can start (OpenBot refuses to start when they are set without a
+  provider, and on Altare they kept reaching the container even after
+  being removed from the console variables).
   See OpenBot's `docs/configuration.md` for the full list.
 
 ## Verification
