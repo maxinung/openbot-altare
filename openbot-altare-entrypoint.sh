@@ -1,1 +1,100 @@
-IyEvYmluL2Jhc2gKIyBPcGVuQm90IGVudHJ5cG9pbnQgZGlzcGF0Y2hlciBmb3IgaG9zdHMgd2hvc2UgcnVubmVyIG93bnMgUElEIDEgKEFsdGFyZSBmcmVlIHRpZXIpLgojCiMgVGhlIG9mZmljaWFsIGltYWdlJ3MgZW50cnlwb2ludCBpcyBzNi1vdmVybGF5J3MgL2luaXQsIHdoaWNoIGFib3J0cyB3aXRoCiMgICAiczYtb3ZlcmxheS1zdWV4ZWM6IGZhdGFsOiBjYW4gb25seSBydW4gYXMgcGlkIDEiCiMgd2hlbiB0aGUgY29udGFpbmVyIHJ1bnRpbWUncyBvd24gaW5pdCBhbHJlYWR5IG93bnMgUElEIDEgKEFsdGFyZSdzIHJ1bm5lcgojIGV4ZWNzIHRoZSBpbWFnZSBlbnRyeXBvaW50IGFzIGEgY2hpbGQpLiBUaGlzIGRpc3BhdGNoZXIga2VlcHMgdGhlIG9mZmljaWFsCiMgaW1hZ2UgdW50b3VjaGVkIGFuZCBvbmx5IGNoYW5nZXMgaG93IGl0cyBzZXJ2aWNlcyBhcmUgc3RhcnRlZDoKIwojICAgLSBQSUQgMSAgICAgLT4gZXhlYyAvaW5pdCwgZXhhY3RseSBhcyB1cHN0cmVhbSBpbnRlbmRzIChzNiBzdXBlcnZpc2VzKS4KIyAgIC0gbm90IFBJRCAxIC0+IHN0YXJ0IHRoZSBzNiBzZXJ2aWNlcyBkaXJlY3RseSwgd2l0aG91dCBzNiAoSGVybWVzLXN0eWxlLAojICAgICAgICAgICAgICAgICAgY2YuIE5vdXNSZXNlYXJjaC9oZXJtZXMtYWdlbnQjNzU5NzQ6IGlmIFBJRCAxLCBleGVjIC9pbml0OwojICAgICAgICAgICAgICAgICAgb3RoZXJ3aXNlIGJ5cGFzcyBzNiBhbmQgcnVuIHRoZSBzZXJ2aWNlcycgb3duIGNvbW1hbmRzKS4KIwojIFRoZSBzZXJ2aWNlcyAocmVhZCBmcm9tIC9ldGMvczYtb3ZlcmxheS9zNi1yYy5kIGluIHRoZSBpbWFnZSk6CiMgICBwb3N0Z3Jlcy1pbml0ICAob25lc2hvdCkgIGluaXRkYiArIHBhc3N3b3JkLCB3cml0ZXMgREFUQUJBU0VfVVJMCiMgICBjb21wdXRlci10b2tlbiAob25lc2hvdCkgIGdlbmVyYXRlcyBDT01QVVRFUl9UT0tFTgojICAgcG9zdGdyZXMgICAgICAgKGxvbmdydW4pICAgZW1iZWRkZWQgUG9zdGdyZVNRTCwgRU1CRURERURfUE9TVEdSRVM9b24gb25seQojICAgY29tcHV0ZXIgICAgICAgKGxvbmdydW4pICAgdGhlIEJvdCdzIGJyb3dzZXIsIEVNQkVEREVEX0NPTVBVVEVSPW9uIChkZWZhdWx0KQojICAgYXBpICAgICAgICAgICAgKGxvbmdydW4pICAgdGhlIHNlcnZlcjsgZm9yZWdyb3VuZCBwcm9jZXNzIGhlcmUsIHNvIHdoZW4gaXQKIyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGV4aXRzIChlLmcuIGV4aXQgNzggb24gYSBzdGFydCByZWZ1c2FsLCBleGFjdGx5CiMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhcyBzNidzIGFwaS9maW5pc2ggaGFsdHMgdGhlIGNvbnRhaW5lcikgdGhlCiMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb250YWluZXIgc3RvcHMgdG9vLgpzZXQgLXUKCmV4cG9ydCBQQVRIPSIvY29tbWFuZDovcGFja2FnZS9hZG1pbi9zNi9jb21tYW5kOi91c3IvbG9jYWwvYmluOi91c3IvbG9jYWwvc2JpbjovdXNyL2xvY2FsL2JpbjovdXNyL3NiaW46L3Vzci9iaW46L3NiaW46L2JpbiIKCiMgUElEIDE6IHRoZSBub3JtYWwgcGF0aC4gczYgc3VwZXJ2aXNlcyBldmVyeXRoaW5nIGZyb20gaGVyZS4KaWYgWyAiJCQiIC1lcSAxIF07IHRoZW4KICBleGVjIC9pbml0CmZpCgplY2hvICJbb3BlbmJvdC1hbHRhcmUtZW50cnlwb2ludF0gbm90IFBJRCAxICgkJCk7IHN0YXJ0aW5nIE9wZW5Cb3Qgc2VydmljZXMgd2l0aG91dCBzNiIgPiYyCgojIHM2LW92ZXJsYXkncyBlbnYgZGlyIChub3JtYWxseSBjcmVhdGVkIGJ5IC9pbml0IHN0YWdlIDEpLiBUaGUgb25lc2hvdHMgYmVsb3cKIyB3cml0ZSBnZW5lcmF0ZWQgdmFsdWVzIChEQVRBQkFTRV9VUkwsIENPTVBVVEVSX1RPS0VOKSBpbnRvIGl0LCBhbmQKIyB3aXRoLWNvbnRlbnYgaGFuZHMgdGhlbSB0byB0aGUgc2VydmljZXMsIGV4YWN0bHkgYXMgdW5kZXIgczYuCm1rZGlyIC1wIC9ydW4vczYvY29udGFpbmVyX2Vudmlyb25tZW50CmNobW9kIDA3MDAgL3J1bi9zNi9jb250YWluZXJfZW52aXJvbm1lbnQgMj4vZGV2L251bGwgfHwgdHJ1ZQoKIyBEdW1wIHRoZSBjb250YWluZXIgZW52aXJvbm1lbnQgaW50byB0aGUgZW52IGRpciwgZXhhY3RseSBhcyAvaW5pdCBzdGFnZSAxCiMgZG9lcyBhdCBib290IChzNi1kdW1wZW52KS4gVGhpcyBpcyBsb2FkLWJlYXJpbmc6IHdpdGgtY29udGVudiBjbGVhcnMgdGhlCiMgcHJvY2VzcyBlbnZpcm9ubWVudCBhbmQgcmVidWlsZHMgaXQgZnJvbSB0aGlzIGRpciwgc28gd2l0aG91dCB0aGUgZHVtcCB0aGUKIyBzZXJ2aWNlcyB3b3VsZCBzZWUgbm9uZSBvZiB0aGUgb3BlcmF0b3IncyB2YXJpYWJsZXMgKG5vIEVNQkVEREVEX1BPU1RHUkVTLAojIG5vIGtleXMpIGFuZCBleGl0IGltbWVkaWF0ZWx5LgojIChEbyBOT1QgdXNlIFM2X0tFRVBfRU5WPTEgaW5zdGVhZDogaXQgc2tpcHMgdGhlIGVudi1kaXIgbG9hZCBlbnRpcmVseSwgc28KIyB0aGUgZ2VuZXJhdGVkIERBVEFCQVNFX1VSTCAvIENPTVBVVEVSX1RPS0VOIHdvdWxkIG5ldmVyIHJlYWNoIHRoZSBzZXJ2aWNlcy4pCi9jb21tYW5kL3M2LWR1bXBlbnYgL3J1bi9zNi9jb250YWluZXJfZW52aXJvbm1lbnQKCiMgUGVyc2lzdCB0aGUgZW1iZWRkZWQgZGF0YWJhc2UgaW4gdGhlIHBsYXRmb3JtJ3MgZGF0YSBmb2xkZXIgd2hlbiBvbmUgaXMKIyBwcmVzZW50IChBbHRhcmUgbW91bnRzIGl0IGF0IC9kYXRhKS4gV2l0aG91dCB0aGlzLCBhIHJlZGVwbG95IHdpcGVzIHRoZQojIGNsdXN0ZXIgYW5kIGl0cyBwYXNzd29yZCBmaWxlLCBzaW5jZSBmaWxlcyBvdXRzaWRlIC9kYXRhIGFyZSByZXBsYWNlZC4KaWYgWyAtZCAvZGF0YSBdICYmIFsgISAtTCAvdmFyL2xpYi9wb3N0Z3Jlc3FsIF07IHRoZW4KICBpZiBbICEgLWUgL2RhdGEvcG9zdGdyZXNxbC9kYXRhL1BHX1ZFUlNJT04gXTsgdGhlbgogICAgbWtkaXIgLXAgL2RhdGEvcG9zdGdyZXNxbAogICAgaWYgY3AgLWEgL3Zhci9saWIvcG9zdGdyZXNxbC8uIC9kYXRhL3Bvc3RncmVzcWwvOyB0aGVuCiAgICAgIHJtIC1yZiAvdmFyL2xpYi9wb3N0Z3Jlc3FsCiAgICAgIGxuIC1zIC9kYXRhL3Bvc3RncmVzcWwgL3Zhci9saWIvcG9zdGdyZXNxbAogICAgZmkKICBlbHNlCiAgICBybSAtcmYgL3Zhci9saWIvcG9zdGdyZXNxbAogICAgbG4gLXMgL2RhdGEvcG9zdGdyZXNxbCAvdmFyL2xpYi9wb3N0Z3Jlc3FsCiAgZmkKICBjaG93biBwb3N0Z3Jlczpwb3N0Z3JlcyAvZGF0YS9wb3N0Z3Jlc3FsIDI+L2Rldi9udWxsIHx8IHRydWUKZmkKCiMgT25lc2hvdHMsIGFzIHJvb3QsIGV4YWN0bHkgYXMgczYgd291bGQgcnVuIHRoZW0uCiMgKHBvc3RncmVzLWluaXQuc2ggaXMgYSBuby1vcCB1bmxlc3MgRU1CRURERURfUE9TVEdSRVM9b247IGNvbXB1dGVyLXRva2VuLnNoCiMgbGVhdmVzIGEgcHJlc2V0IENPTVBVVEVSX1RPS0VOIGFsb25lLikKL2NvbW1hbmQvd2l0aC1jb250ZW52IC9ldGMvczYtb3ZlcmxheS9zY3JpcHRzL3Bvc3RncmVzLWluaXQuc2gKL2NvbW1hbmQvd2l0aC1jb250ZW52IC9ldGMvczYtb3ZlcmxheS9zY3JpcHRzL2NvbXB1dGVyLXRva2VuLnNoCgojIExvbmctcnVubmluZyBzZXJ2aWNlcywgZWFjaCBpbiB0aGUgYmFja2dyb3VuZC4gVGhlaXIgcnVuIHNjcmlwdHMgZXhlYyB0aGUKIyBzZXJ2ZXIgcHJvY2Vzcywgc28gZWFjaCBiYWNrZ3JvdW5kIHNoZWxsIGJlY29tZXMgdGhhdCBzZXJ2aWNlLgpwaWRzPSIiCmlmIFsgIiR7RU1CRURERURfUE9TVEdSRVM6LW9mZn0iID0gIm9uIiBdOyB0aGVuCiAgL2NvbW1hbmQvd2l0aC1jb250ZW52IC9ldGMvczYtb3ZlcmxheS9zNi1yYy5kL3Bvc3RncmVzL3J1biAmCiAgcGlkcz0iJHBpZHMgJCEiCmZpCmlmIFsgIiR7RU1CRURERURfQ09NUFVURVI6LW9ufSIgPSAib24iIF07IHRoZW4KICAvY29tbWFuZC93aXRoLWNvbnRlbnYgL2V0Yy9zNi1vdmVybGF5L3M2LXJjLmQvY29tcHV0ZXIvcnVuICYKICBwaWRzPSIkcGlkcyAkISIKZmkKL2NvbW1hbmQvd2l0aC1jb250ZW52IC9ldGMvczYtb3ZlcmxheS9zNi1yYy5kL2FwaS9ydW4gJgphcGlfcGlkPSQhCnBpZHM9IiRwaWRzICRhcGlfcGlkIgoKY2xlYW51cCgpIHsKICBraWxsICRwaWRzIDI+L2Rldi9udWxsCiAgd2FpdCAyPi9kZXYvbnVsbAp9CnRyYXAgJ2NsZWFudXA7IGV4aXQgMTQzJyBURVJNIElOVAoKIyBXYWl0IGZvciB0aGUgZmlyc3Qgc2VydmljZSB0byBleGl0LCB0aGVuIHN0b3AgdGhlIHJlc3QgYW5kIGV4aXQgd2l0aCBpdHMKIyBjb2RlIOKAlCBtaXJyb3JpbmcgczYgYnJpbmdpbmcgdGhlIGNvbnRhaW5lciBkb3duIHdoZW4gYSBzdXBlcnZpc2VkIHByb2Nlc3MKIyBleGl0cyAoYW5kIGFwaS9maW5pc2ggaGFsdGluZyBpdCBvbiBhIHN0YXJ0IHJlZnVzYWwsIGV4aXQgNzgpLgp3YWl0IC1uICRwaWRzCmNvZGU9JD8KY2xlYW51cApleGl0ICIkY29kZSIK
+#!/bin/bash
+# OpenBot entrypoint dispatcher for hosts whose runner owns PID 1 (Altare free tier).
+#
+# The official image's entrypoint is s6-overlay's /init, which aborts with
+#   "s6-overlay-suexec: fatal: can only run as pid 1"
+# when the container runtime's own init already owns PID 1 (Altare's runner
+# execs the image entrypoint as a child). This dispatcher keeps the official
+# image untouched and only changes how its services are started:
+#
+#   - PID 1     -> exec /init, exactly as upstream intends (s6 supervises).
+#   - not PID 1 -> start the s6 services directly, without s6 (Hermes-style,
+#                  cf. NousResearch/hermes-agent#75974: if PID 1, exec /init;
+#                  otherwise bypass s6 and run the services' own commands).
+#
+# The services (read from /etc/s6-overlay/s6-rc.d in the image):
+#   postgres-init  (oneshot)  initdb + password, writes DATABASE_URL
+#   computer-token (oneshot)  generates COMPUTER_TOKEN
+#   postgres       (longrun)   embedded PostgreSQL, EMBEDDED_POSTGRES=on only
+#   computer       (longrun)   the Bot's browser, EMBEDDED_COMPUTER=on (default)
+#   api            (longrun)   the server; foreground process here, so when it
+#                              exits (e.g. exit 78 on a start refusal, exactly
+#                              as s6's api/finish halts the container) the
+#                              container stops too.
+set -u
+
+export PATH="/command:/package/admin/s6/command:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# PID 1: the normal path. s6 supervises everything from here.
+if [ "$$" -eq 1 ]; then
+  exec /init
+fi
+
+echo "[openbot-altare-entrypoint] not PID 1 ($$); starting OpenBot services without s6" >&2
+
+# s6-overlay's env dir (normally created by /init stage 1). The oneshots below
+# write generated values (DATABASE_URL, COMPUTER_TOKEN) into it, and
+# with-contenv hands them to the services, exactly as under s6.
+mkdir -p /run/s6/container_environment
+chmod 0700 /run/s6/container_environment 2>/dev/null || true
+
+# Dump the container environment into the env dir, exactly as /init stage 1
+# does at boot (s6-dumpenv). This is load-bearing: with-contenv clears the
+# process environment and rebuilds it from this dir, so without the dump the
+# services would see none of the operator's variables (no EMBEDDED_POSTGRES,
+# no keys) and exit immediately.
+# (Do NOT use S6_KEEP_ENV=1 instead: it skips the env-dir load entirely, so
+# the generated DATABASE_URL / COMPUTER_TOKEN would never reach the services.)
+/command/s6-dumpenv /run/s6/container_environment
+
+# Persist the embedded database in the platform's data folder when one is
+# present (Altare mounts it at /data). Without this, a redeploy wipes the
+# cluster and its password file, since files outside /data are replaced.
+if [ -d /data ] && [ ! -L /var/lib/postgresql ]; then
+  if [ ! -e /data/postgresql/data/PG_VERSION ]; then
+    mkdir -p /data/postgresql
+    if cp -a /var/lib/postgresql/. /data/postgresql/; then
+      rm -rf /var/lib/postgresql
+      ln -s /data/postgresql /var/lib/postgresql
+    fi
+  else
+    rm -rf /var/lib/postgresql
+    ln -s /data/postgresql /var/lib/postgresql
+  fi
+  chown postgres:postgres /data/postgresql 2>/dev/null || true
+fi
+
+# Oneshots, as root, exactly as s6 would run them.
+# (postgres-init.sh is a no-op unless EMBEDDED_POSTGRES=on; computer-token.sh
+# leaves a preset COMPUTER_TOKEN alone.)
+/command/with-contenv /etc/s6-overlay/scripts/postgres-init.sh
+/command/with-contenv /etc/s6-overlay/scripts/computer-token.sh
+
+# Long-running services, each in the background. Their run scripts exec the
+# server process, so each background shell becomes that service.
+pids=""
+if [ "${EMBEDDED_POSTGRES:-off}" = "on" ]; then
+  /command/with-contenv /etc/s6-overlay/s6-rc.d/postgres/run &
+  pids="$pids $!"
+fi
+if [ "${EMBEDDED_COMPUTER:-on}" = "on" ]; then
+  /command/with-contenv /etc/s6-overlay/s6-rc.d/computer/run &
+  pids="$pids $!"
+fi
+/command/with-contenv /etc/s6-overlay/s6-rc.d/api/run &
+api_pid=$!
+pids="$pids $api_pid"
+
+cleanup() {
+  kill $pids 2>/dev/null
+  wait 2>/dev/null
+}
+trap 'cleanup; exit 143' TERM INT
+
+# Wait for the first service to exit, then stop the rest and exit with its
+# code — mirroring s6 bringing the container down when a supervised process
+# exits (and api/finish halting it on a start refusal, exit 78).
+wait -n $pids
+code=$?
+cleanup
+exit "$code"
