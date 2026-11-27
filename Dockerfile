@@ -1,2 +1,16 @@
-IyBPcGVuQm90IGltYWdlIHJlYnVpbHQgZm9yIEFsdGFyZSAoZnJlZSB0aWVyIERvY2tlciBBcHBzKS4KIwpBZXJuYXRlJ3MgcnVubmVyIG93bnMgUElEIDEsIHNvIHM2LW92ZXJsYXkncyAvbml0IOKAlCB0aGUgb2ZmaWNpYWwgaW1hZ2UncwplbnRyeXBvaW50IOKAlCBhYm9ydHMgd2l0aCAiczYtb3ZlcmxheS1zdWV4ZWM6IGZhdGFsOiBjYW4gb25seSBydW4gYXMg
-cGlkIDEiLgpBbHRhcmUgaGFzIG5vIGVudHJ5cG9pbnQgb3ZlcnJpZGUgKGl0cyBTdGFydCBjb21tYW5kIG9ubHkgcmVwbGFjZXMgQ01EKS4KIwpUaGlzIGltYWdlIGtlZXBzIHRoZSBvZmZpY2lhbCBpbWFnZSB1bnRvdWNoZWQgYW5kIG9ubHkgc3dhcHMgdGhlIGVudHJ5cG9pbnQKZm9yIGEgZGlzcGF0Y2hlciAob3BlbmJvdC1hbHRhcmUtZW50cnlwb2ludC5zaCk6IGFzIFBJRC AxIGl0IGV4ZWNzIC9pbml0IGFzCnVwc3RyZWFtIGludGVuZHM7IGFzIGEgY2hpbGQgcHJvY2VzcyBpdCBzdGFydHMgczYncyBzZXJ2aWNlcyBkaXJlY3RseQooSGVybWVzLXN0eWxlLCBjZi4gTm91c1Jlc2VhcmNoL2hlcm1lcy1hZ2VudCM3NTk3NCkuCkZST00gZ2hjci5pby9jb3BpbG90a2l0L29wZW5ib3Q6djEuMi4wCgpDT1BZIG9wZW5ib3QtYWx0YXJlLWVudHJ5cG9pbnQuc2ggL2FwcC9iaW4vb3BlbmJvdC1hbHRhcmUtZW50cnlwb2ludC5zaApSVU4gY2htb2QgK3ggL2FwcC9iaW4vb3BlbmJvdC1hbHRhcmUtZW50cnlwb2ludC5zaAoKRU5UUllQT0lOVCBbIi9hcHAvYmluL29wZW5ib3QtYWx0YXJlLWVudHJ5cG9pbnQuc2giXQo=
+# OpenBot image rebuilt for Altare (free tier Docker Apps).
+#
+# Altare's runner owns PID 1, so s6-overlay's /init — the official image's
+# entrypoint — aborts with "s6-overlay-suexec: fatal: can only run as pid 1".
+# Altare has no entrypoint override (its Start command only replaces CMD).
+#
+# This image keeps the official image untouched and only swaps the entrypoint
+# for a dispatcher (openbot-altare-entrypoint.sh): as PID 1 it execs /init as
+# upstream intends; as a child process it starts s6's services directly
+# (Hermes-style, cf. NousResearch/hermes-agent#75974).
+FROM ghcr.io/copilotkit/openbot:v1.2.0
+
+COPY openbot-altare-entrypoint.sh /app/bin/openbot-altare-entrypoint.sh
+RUN chmod +x /app/bin/openbot-altare-entrypoint.sh
+
+ENTRYPOINT ["/app/bin/openbot-altare-entrypoint.sh"]
