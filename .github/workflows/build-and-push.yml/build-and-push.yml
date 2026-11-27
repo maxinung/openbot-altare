@@ -1,0 +1,160 @@
+name: Build, push and verify OpenBot (Altare fix)
+
+# Builds the dispatcher image, pushes it to ghcr.io, then verifies it:
+#  - the ORIGINAL image run with --init must show the s6 PID 1 crash (control)
+#  - the FIXED image run with --init (entrypoint not PID 1, like Altare's
+#    runner) must NOT show it, and must get as far as the licence gate
+#  - the FIXED image run normally (PID 1) must behave the same as upstream
+#
+# The verify job uses DUMMY config only (no real keys). The server is
+# expected to refuse at the licence gate (exit 78) — reaching the gate at
+# all is the proof the dispatcher started the services. /health can only
+# serve with real CopilotKit Intelligence + model keys, which are never
+# put in this repo; that check is recorded, not asserted.
+#
+# The verify job writes its report to verification/last-run.md and pushes
+# it back. The push trigger below does NOT include verification/, so the
+# report commit does not retrigger this workflow.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - Dockerfile
+      - openbot-altare-entrypoint.sh
+      - .github/workflows/build-and-push.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/maxinung/openbot-altare:v1.2.0
+            ghcr.io/maxinung/openbot-altare:latest
+
+  verify:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Write dummy test env (no real keys)
+        run: |
+          {
+            echo "EMBEDDED_POSTGRES=on"
+            echo "EMBEDDED_COMPUTER=on"
+            echo "KEY_ENCRYPTION_KEY=$(openssl rand -base64 32)"
+            echo "BETTER_AUTH_URL=http://localhost:3001"
+            echo "BETTER_AUTH_SECRET=$(openssl rand -hex 32)"
+            echo "INITIAL_ADMIN_EMAILS=test@example.com"
+            echo "GOOGLE_OAUTH_CLIENT_ID=dummy"
+            echo "GOOGLE_OAUTH_CLIENT_SECRET=dummy"
+            echo "INTELLIGENCE_API_URL=https://api.intelligence.copilotkit.ai"
+            echo "INTELLIGENCE_GATEWAY_WS_URL=wss://api.intelligence.copilotkit.ai"
+            echo "CPK_INTELLIGENCE_API_KEY=dummy-invalid-key"
+            echo "OPENAI_API_KEY=dummy-invalid-key"
+            echo "OPENBOT_SINGLE_USER=true"
+            echo "PORT=3001"
+          } > /tmp/test.env
+
+      - name: Control — original image, NOT as PID 1 (must crash)
+        run: |
+          docker run -d --name ob-orig-noinit --init --env-file /tmp/test.env ghcr.io/copilotkit/openbot:v1.2.0 || true
+          sleep 30
+          docker logs ob-orig-noinit > /tmp/logs-orig.txt 2>&1 || true
+          docker rm -f ob-orig-noinit || true
+          grep -E "can only run as pid 1|exited with code" /tmp/logs-orig.txt | head -5 || true
+
+      - name: Fixed image, NOT as PID 1 (docker --init, like Altare's runner)
+        run: |
+          docker run -d --name ob-noinit --init --env-file /tmp/test.env -p 3001:3001 ghcr.io/maxinung/openbot-altare:v1.2.0
+          sleep 90
+          docker logs ob-noinit > /tmp/logs-noinit.txt 2>&1 || true
+          docker inspect ob-noinit --format 'noinit state={{.State.Status}} exit={{.State.ExitCode}}' | tee /tmp/status-noinit.txt
+
+      - name: Fixed image as PID 1 (plain docker run, parity check)
+        run: |
+          docker run -d --name ob-pid1 --env-file /tmp/test.env -p 3002:3001 ghcr.io/maxinung/openbot-altare:v1.2.0
+          sleep 90
+          docker logs ob-pid1 > /tmp/logs-pid1.txt 2>&1 || true
+          docker inspect ob-pid1 --format 'pid1 state={{.State.Status}} exit={{.State.ExitCode}}' | tee /tmp/status-pid1.txt
+
+      - name: Check /health (recorded only — needs real keys to serve)
+        run: |
+          curl -s -m 5 -o /dev/null -w "noinit /health: %{http_code}\n" http://localhost:3001/health > /tmp/health.txt || echo "noinit /health: unreachable" >> /tmp/health.txt
+          curl -s -m 5 -o /dev/null -w "pid1 /health: %{http_code}\n" http://localhost:3002/health >> /tmp/health.txt || echo "pid1 /health: unreachable" >> /tmp/health.txt
+          cat /tmp/health.txt
+
+      - name: Write verification report
+        run: |
+          mkdir -p verification
+          {
+            echo "# Verification — $(date -u +%FT%TZ) — run ${{ github.run_id }}"
+            echo
+            echo "Image: \`ghcr.io/maxinung/openbot-altare:v1.2.0\` (built from CopilotKit/OpenBot v1.2.0)."
+            echo "Config: dummy env only (no real keys). The server is expected to refuse at the licence gate (exit 78) — reaching the gate at all proves the dispatcher started the services."
+            echo
+            if grep -q "can only run as pid 1" /tmp/logs-orig.txt; then
+              echo "Control (original image, --init): s6 PID 1 error PRESENT (as expected)."
+            else
+              echo "Control (original image, --init): s6 PID 1 error NOT seen (unexpected — control failed)."
+            fi
+            if grep -q "can only run as pid 1" /tmp/logs-noinit.txt; then
+              echo "## FAIL: s6 PID 1 error present in fixed image, --init run."
+            else
+              echo "## PASS: no s6 PID 1 error in fixed image, --init run."
+            fi
+            if grep -q "can only run as pid 1" /tmp/logs-pid1.txt; then
+              echo "Fixed image, PID 1 run: s6 PID 1 error PRESENT (unexpected)."
+            else
+              echo "Fixed image, PID 1 run: no s6 PID 1 error."
+            fi
+            echo
+            echo "States: $(cat /tmp/status-noinit.txt) | $(cat /tmp/status-pid1.txt)"
+            echo
+            echo "## Log evidence (fixed image, --init run)"
+            echo '```'
+            grep -E "not PID 1|licence-gate|intelligence-compatibility|refus|Postgres did|database system is starting|starting OpenBot" /tmp/logs-noinit.txt | head -20 || true
+            echo '```'
+            echo
+            echo "## Log evidence (fixed image, PID 1 run)"
+            echo '```'
+            grep -E "licence-gate|intelligence-compatibility|refus|Postgres did|database system is starting" /tmp/logs-pid1.txt | head -20 || true
+            echo '```'
+            echo
+            echo "## /health (expected unreachable without real keys)"
+            echo '```'
+            cat /tmp/health.txt
+            echo '```'
+          } > verification/last-run.md
+          cat verification/last-run.md
+          if grep -q "can only run as pid 1" /tmp/logs-noinit.txt /tmp/logs-pid1.txt; then
+            echo "VERDICT=FAIL" >> "$GITHUB_ENV"
+            exit 1
+          fi
+          echo "VERDICT=PASS" >> "$GITHUB_ENV"
+
+      - name: Publish verification report back to the repo
+        if: always()
+        run: |
+          git config user.name "openbot-altare-ci"
+          git config user.email "ci@openbot-altare.local"
+          git add verification/last-run.md
+          git commit -m "verification: run ${{ github.run_id }} [skip ci]" || echo "nothing to commit"
+          git push origin HEAD:main || echo "push failed"
